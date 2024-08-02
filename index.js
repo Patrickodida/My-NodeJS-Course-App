@@ -11,7 +11,7 @@ const PASSWORD = "passw@rd";
 // Middleware to log requests
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "public")));
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Routes
 
@@ -22,30 +22,30 @@ app.get(
   })
 );
 
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'login.html'));
-})
+app.get("/login", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "login.html"));
+});
 
-app.post('/login', (req, res) => {
+app.post("/login", (req, res) => {
   const { password } = req.body;
-  if(password === PASSWORD){
-    res.redirect('/node-course.html')
+  if (password === PASSWORD) {
+    res.redirect("/node-course.html");
   } else {
-    res.send('Invalid Password. Please try again!')
+    res.send("Invalid Password. Please try again!");
   }
-})
+});
 
-app.get('node-course', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'node-course.html'))
-})
+app.get("node-course", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "node-course.html"));
+});
 
 app.use((req, res, next) => {
-  if(req.url === 'node-course'){
-    res.redirect('/login')
+  if (req.url === "node-course") {
+    res.redirect("/login");
   } else {
-    next()
+    next();
   }
-})
+});
 
 const PORT = 4000;
 app.listen(PORT, () => {
