@@ -35,11 +35,11 @@ function isAuthenticated(req, res, next) {
 // Routes
 
 app.get(
-  ("/",
+  "/",
   (req, res) => {
     res.send("Welcome to this server application");
   })
-);
+;
 
 app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "login.html"));
